@@ -8,10 +8,10 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 class DefaultController extends Controller
 {
     /**
-     * @Route("/")
+     * @Route("/login")
      */
-    public function indexAction()
+    public function loginAction()
     {
-        return $this->render('SecuriteBundle:Default:index.html.twig');
+        return $this->render('securite/login.html.twig');
     }
 }
