@@ -1,3 +1,8 @@
+recette:
+    resource: "@RecetteBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
 securite:
     resource: "@SecuriteBundle/Controller/"
     type:     annotation
