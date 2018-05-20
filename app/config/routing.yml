@@ -1,3 +1,8 @@
+securite:
+    resource: "@SecuriteBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
 app:
     resource: '@AppBundle/Controller/'
     type: annotation
