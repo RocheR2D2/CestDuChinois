@@ -8,7 +8,7 @@
             "AppBundle\\": "src/AppBundle",
             "SecuriteBundle\\": "src/SecuriteBundle",
             "RecetteBundle\\": "src/RecetteBundle",
-            "DashBoardBundle\\": "src/DashBoardBundle"
+            "DashboardBundle\\": "src/DashboardBundle"
 
         },
         "classmap": [ "app/AppKernel.php", "app/AppCache.php" ]

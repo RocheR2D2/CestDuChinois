@@ -19,6 +19,7 @@
       <parameter key="AppBundle">AppBundle\AppBundle</parameter>
       <parameter key="SecuriteBundle">SecuriteBundle\SecuriteBundle</parameter>
       <parameter key="RecetteBundle">RecetteBundle\RecetteBundle</parameter>
+      <parameter key="DashboardBundle">DashboardBundle\DashboardBundle</parameter>
       <parameter key="DebugBundle">Symfony\Bundle\DebugBundle\DebugBundle</parameter>
       <parameter key="WebProfilerBundle">Symfony\Bundle\WebProfilerBundle\WebProfilerBundle</parameter>
       <parameter key="SensioDistributionBundle">Sensio\Bundle\DistributionBundle\SensioDistributionBundle</parameter>
@@ -75,6 +76,11 @@
         <parameter key="parent">null</parameter>
         <parameter key="path">/Users/mac/Desktop/CDC/CestDuChinois/src/RecetteBundle</parameter>
         <parameter key="namespace">RecetteBundle</parameter>
+      </parameter>
+      <parameter key="DashboardBundle" type="collection">
+        <parameter key="parent">null</parameter>
+        <parameter key="path">/Users/mac/Desktop/CDC/CestDuChinois/src/DashboardBundle</parameter>
+        <parameter key="namespace">DashboardBundle</parameter>
       </parameter>
       <parameter key="DebugBundle" type="collection">
         <parameter key="parent">null</parameter>
@@ -2701,6 +2707,14 @@
       <call method="addPath">
         <argument>/Users/mac/Desktop/CDC/CestDuChinois/src/RecetteBundle/Resources/views</argument>
         <argument>!Recette</argument>
+      </call>
+      <call method="addPath">
+        <argument>/Users/mac/Desktop/CDC/CestDuChinois/src/DashboardBundle/Resources/views</argument>
+        <argument>Dashboard</argument>
+      </call>
+      <call method="addPath">
+        <argument>/Users/mac/Desktop/CDC/CestDuChinois/src/DashboardBundle/Resources/views</argument>
+        <argument>!Dashboard</argument>
       </call>
       <call method="addPath">
         <argument>/Users/mac/Desktop/CDC/CestDuChinois/vendor/symfony/symfony/src/Symfony/Bundle/DebugBundle/Resources/views</argument>
