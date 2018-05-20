@@ -1,9 +1,6 @@
 .idea
 /app/config/parameters.yml
 /vendor/
-/web/bundles/
+
 /var/
-!var/cache/.gitkeep
-!var/logs/.gitkeep
-!var/sessions/.gitkeep
 /phpunit.xml
