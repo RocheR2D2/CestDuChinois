@@ -1,3 +1,8 @@
+dashboard:
+    resource: "@DashboardBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
 recette:
     resource: "@RecetteBundle/Controller/"
     type:     annotation

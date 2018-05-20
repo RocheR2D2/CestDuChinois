@@ -19,6 +19,7 @@ class AppKernel extends Kernel
             new AppBundle\AppBundle(),
             new SecuriteBundle\SecuriteBundle(),
             new RecetteBundle\RecetteBundle(),
+            new DashboardBundle\DashboardBundle(),
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {
