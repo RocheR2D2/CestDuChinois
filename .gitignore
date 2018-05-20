@@ -2,5 +2,10 @@
 /app/config/parameters.yml
 /vendor/
 
-/var/
-/phpunit.xml
+
+/var/cache/*
+/var/logs/*
+/var/sessions/*
+!var/cache/.gitkeep
+!var/logs/.gitkeep
+!var/sessions/.gitkeep
