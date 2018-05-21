@@ -8,9 +8,9 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 class DefaultController extends Controller
 {
     /**
-     * @Route("/")
+     * @Route("/dashboard")
      */
-    public function indexAction()
+    public function dashboardAction()
     {
         return $this->render('dashboard/index.html.twig');
     }
