@@ -5,9 +5,31 @@
         <title>{% block title %}Welcome!{% endblock %}</title>
         {% block stylesheets %}{% endblock %}
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+
+        <!-- bootstrap css-->
+        <link rel = "stylesheet" type="text/css" href="{{ asset('assets/css/bootstrap.min.css') }}">
+        <!-- bootstrap theme css-->
+        <link rel = "stylesheet" type="text/css" href="{{ asset('assets/css/bootstrap-theme.min.css') }}">
+        <!-- jqueryui css-->
+        <link rel = "stylesheet" type="text/css" href="{{ asset('assets/css/jquery-ui.min.css') }}">
+        <!-- font awesome css-->
+        <link rel = "stylesheet" type="text/css" href="{{ asset('assets/css/fontawesome/css/font-awesome.min.css') }}">
+        <!-- style css-->
+        <link rel = "stylesheet" type="text/css" href="{{ asset('assets/css/style.css') }}">
+        <link href="https://fonts.googleapis.com/css?family=Lobster+Two|Bellefair|Parisienne|Montserrat|Open+Sans:400,700" rel="stylesheet"> 
     </head>
     <body>
+        {% include 'default/navbar.html.twig' %}
         {% block body %}{% endblock %}
+
+        <!-- jquery js-->
+        <script type="text/javascript" src="{{ asset('assets/js/jquery.min.js') }}"></script>
+        <!-- jqueryui js-->
+        <script type="text/javascript" src="{{ asset('assets/js/jquery-ui.min.js') }}"></script>    
+        <!-- bootstrap js-->
+        <script type="text/javascript" src="{{ asset('assets/js/bootstrap.min.js') }}"></script>
+        <!-- personal js-->
+        <script type="text/javascript" src="{{ asset('assets/js/chinois.js') }}"></script>
         {% block javascripts %}{% endblock %}
     </body>
 </html>

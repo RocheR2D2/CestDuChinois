@@ -1,0 +1,104 @@
+
+/********************************* NAVBAR *********************************/
+
+#navtop a {
+	color: #b8b8b8;
+}
+
+
+#nav-right{
+  float:right;
+} 
+
+#nav-left .li-left-hidden{
+    display: none;
+}
+
+.nav>li>a>i:focus, .nav>li>a>i:hover {
+    color: #ffce00 !important;
+}
+
+.nav>li>a:focus, .nav>li>a:hover {
+    text-decoration: none;
+    background-color: #fff;
+}
+
+.nav-pills>li.active>a{
+    color: #f14444 !important;
+    background-color: #fff;
+}
+.nav-pills>li.active>a:hover{
+  background-color: #fff;
+}
+
+/*
+*** site_name
+*/
+
+#site_name
+{
+  color:#f14444!important; 
+  font-family: 'Lobster Two', cursive;
+  font-size: 23px;
+  margin-top: -3px;
+  padding-left: 5px;
+}
+
+
+/***************************** MEDIA QUERIES *****************************/
+
+@media screen and (max-width:768px){
+
+  #nav-left{
+    text-align: center;
+  }
+
+  #nav-left:after{
+    display: block;
+    content: "";
+    clear: both;
+  }
+
+  #nav-left #site_name {
+    float:left;
+    margin-left: 5px;
+  }
+
+  #nav-left .li-left-hidden{
+    display: block;
+  }
+
+
+  #nav-left .li-left,   #nav-left .li-left-hidden{
+    float:left;
+    width: 13%;
+    margin-right:-14px; 
+    margin-bottom: -35px;
+  }
+
+
+  #nav-left li span{ 
+    display: none;
+  }
+
+  #nav-right{
+    float: none;
+    display: block;
+    content: "";
+    clear: both;
+  }
+
+  #nav-right{
+    float: left;
+    text-align: center;
+
+  }
+
+  #nav-right li {
+    display: none;
+  
+  }
+
+  #nav-right li span{
+    display: none;
+  }
