@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+{% block stylesheets %}
+	<link rel = "stylesheet" type="text/css" href="{{ asset('assets/css/dashboard.css') }}">
+{% endblock %}
+{% block body %}
+	<div class="wrapper" id="dashboard">
+		<div id="sidebar">
+			{% include 'sidebar.html.twig' %}
+		</div>
+		<div id="content">
+			{% include 'content.html.html' %}
+		</div>
+	</div>
+{% endblock %}
+{% block javascripts %}
+{% endblock %}
