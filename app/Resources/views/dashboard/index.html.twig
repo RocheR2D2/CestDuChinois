@@ -5,10 +5,10 @@
 {% block body %}
 	<div class="wrapper" id="dashboard">
 		<div id="sidebar">
-			{% include 'sidebar.html.twig' %}
+            {{ include('dashboard/sidebar.html.twig') }}
 		</div>
 		<div id="content">
-			{% include 'content.html.html' %}
+            {{ include('dashboard/content.html.twig') }}
 		</div>
 	</div>
 {% endblock %}
