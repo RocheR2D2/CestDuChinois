@@ -5,7 +5,6 @@
 	color: #b8b8b8;
 }
 
-
 #nav-right{
   float:right;
 } 
@@ -19,16 +18,16 @@
 }
 
 .nav>li>a:focus, .nav>li>a:hover {
-    text-decoration: none;
-    background-color: #fff;
+    text-decoration: none !important;
+    background-color: #fff !important;
 }
 
 .nav-pills>li.active>a{
     color: #f14444 !important;
-    background-color: #fff;
+    background-color: #fff !important;
 }
 .nav-pills>li.active>a:hover{
-  background-color: #fff;
+  background-color: #fff !important;
 }
 
 /*
