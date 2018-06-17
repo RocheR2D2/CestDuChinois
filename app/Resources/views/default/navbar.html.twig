@@ -4,7 +4,7 @@
       
     <ul class="nav navbar-nav" id="nav-left">
       <li>
-        <a href="<?php echo $homepage;?>" id="site_name">C'est du Chinois</a>
+        <a href="{{ path("homepage") }}" id="site_name">C'est du Chinois</a>
       </li>
       <li class="li-left">
         <a href="#"> 
@@ -27,7 +27,7 @@
         </a>
       </li>
       <li class="li-left-hidden">
-        <a href="#">
+        <a href="{{ path('logout') }}">
           <i class="fa fa-share-alt" aria-hidden="true"><span> Partager</span></i>
         </a>
       </li>
@@ -42,7 +42,7 @@
         </a>
       </li>
       <li>
-        <a href="#">
+        <a href="{{ path('logout') }}">
           <i class="fa fa-share-alt" aria-hidden="true"><span> Partager</span></i>
         </a>
       </li>
