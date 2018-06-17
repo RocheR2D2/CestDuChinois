@@ -14,4 +14,14 @@ class DefaultController extends Controller
     {
         return $this->render('recette/recette.html.twig');
     }
+
+    
+
+    /**
+     * @Route("/nouvelleRecette", name="ajouterRecette")
+     */
+    public function ajouterRecetteAction()
+    {
+        return $this->render('recette/nouvelleRecette.html.twig');
+    }
 }
