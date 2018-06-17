@@ -1,24 +1,5 @@
-{% extends 'base.html.twig' %}
-{% block stylesheets %}
-	<link rel = "stylesheet" type="text/css" href="{{ asset('assets/css/dashboard.css') }}">
+{% extends 'dashboardbase.html.twig' %}
 
-{% endblock %}
-{% block body %}
-	<div class="wrapper" id="dashboard">
-		<div id="sidebar">
-            {{ include('dashboard/sidebar.html.twig') }}
-		</div>
-		<div id="content">
-            {{ include('dashboard/content.html.twig') }}
-		</div>
-	</div>
-{% endblock %}
-{% block javascripts %}
-	<script type="text/javascript">
-        $(document).ready(function () {
-            $('#sidebarCollapse').on('click', function () {
-                $('#sidebar').toggleClass('active');
-            });
-        });
-    </script>
-{% endblock %}
+	{% block content %}
+		{{ include('dashboard/content.html.twig') }}
+    {% endblock %}

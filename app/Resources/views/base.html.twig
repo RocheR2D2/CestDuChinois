@@ -3,6 +3,8 @@
     <head>
         <meta charset="UTF-8" />
         <title>{% block title %}C'est du Chinois{% endblock %}</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         
         <link rel="icon" type="image/x-icon" href="{{ asset('logo.ico') }}" />
         <!-- bootstrap css-->
@@ -22,6 +24,7 @@
     <body>
         {{ include('default/navbar.html.twig') }}
         {% block body %}{% endblock %}
+      
 
         <!-- jquery js-->
         <script type="text/javascript" src="{{ asset('assets/js/jquery.min.js') }}"></script>
