@@ -1,3 +1,7 @@
+recette_recette:
+    resource: "@RecetteBundle/Controller/RecetteController.php"
+    type:     annotation
+
 dashboard:
     resource: "@DashboardBundle/Controller/"
     type:     annotation
