@@ -11,9 +11,28 @@ class DefaultController extends Controller
     /**
      * @Route("/login", name="login")
      */
-    public function loginAction()
+    public function loginAction(Request $request)
     {
-        return $this->render('securite/login.html.twig');
+
+        $authenticationUtils = $this->get('security.authentication_utils');
+        // get the login error if there is one
+        $errors = $authenticationUtils->getLastAuthenticationError();
+
+        // last username entered by the user
+        $lastUsername = $authenticationUtils->getLastUsername();
+
+        return $this->render('securite/login.html.twig', [
+            'errors' => $errors,
+            'last_username' =>  $lastUsername
+        ]);
+    }
+
+    /**
+     * @Route("/register", name="register")
+     */
+    public function registerAction(Request $request)
+    {
+        return $this->render('securite/register.html.twig');
     }
 
 
