@@ -24,23 +24,30 @@ class Recette
     /**
      * @var string
      *
-     * @ORM\Column(name="name", type="string", length=255)
+     * @ORM\Column(name="nom", type="string", length=255)
      */
-    private $name;
+    private $nom;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="description", type="string", length=255)
+     * @ORM\Column(name="profil", type="string", length=255)
+     */
+    private $profil;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="description", type="string", length=255, nullable=true)
      */
     private $description;
 
     /**
      * @var array
      *
-     * @ORM\Column(name="step", type="json_array")
+     * @ORM\Column(name="etape", type="json_array")
      */
-    private $step;
+    private $etape;
 
     /**
      * @var array
@@ -57,32 +64,32 @@ class Recette
     private $saveur;
 
     /**
-     * @var array
+     * @var string
      *
-     * @ORM\Column(name="facons", type="json_array")
+     * @ORM\Column(name="facons", type="string", length=255)
      */
     private $facons;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="time", type="string", length=255)
+     * @ORM\Column(name="temps", type="string", length=255)
      */
-    private $time;
+    private $temps;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="level", type="string", length=255)
+     * @ORM\Column(name="niveau", type="string", length=255)
      */
-    private $level;
+    private $niveau;
 
     /**
      * @var bool
      *
-     * @ORM\Column(name="valid", type="boolean")
+     * @ORM\Column(name="valide", type="boolean")
      */
-    private $valid;
+    private $valide;
 
     /**
      * @var bool
@@ -91,6 +98,10 @@ class Recette
      */
     private $status;
 
+    /**
+     * @ORM\ManyToMany(targetEntity="Tags")
+     */
+    private $tags;
 
     /**
      * Get id
@@ -103,27 +114,51 @@ class Recette
     }
 
     /**
-     * Set name
+     * Set nom
      *
-     * @param string $name
+     * @param string $nom
      *
      * @return Recette
      */
-    public function setName($name)
+    public function setNom($nom)
     {
-        $this->name = $name;
+        $this->nom = $nom;
 
         return $this;
     }
 
     /**
-     * Get name
+     * Get nom
      *
      * @return string
      */
-    public function getName()
+    public function getNom()
     {
-        return $this->name;
+        return $this->nom;
+    }
+
+    /**
+     * Set profil
+     *
+     * @param string $profil
+     *
+     * @return Recette
+     */
+    public function setProfil($profil)
+    {
+        $this->profil = $profil;
+
+        return $this;
+    }
+
+    /**
+     * Get profil
+     *
+     * @return string
+     */
+    public function getProfil()
+    {
+        return $this->profil;
     }
 
     /**
@@ -151,27 +186,27 @@ class Recette
     }
 
     /**
-     * Set step
+     * Set etape
      *
-     * @param array $step
+     * @param array $etape
      *
      * @return Recette
      */
-    public function setStep($step)
+    public function setEtape($etape)
     {
-        $this->step = $step;
+        $this->etape = $etape;
 
         return $this;
     }
 
     /**
-     * Get step
+     * Get etape
      *
      * @return array
      */
-    public function getStep()
+    public function getEtape()
     {
-        return $this->step;
+        return $this->etape;
     }
 
     /**
@@ -225,7 +260,7 @@ class Recette
     /**
      * Set facons
      *
-     * @param array $facons
+     * @param string $facons
      *
      * @return Recette
      */
@@ -239,7 +274,7 @@ class Recette
     /**
      * Get facons
      *
-     * @return array
+     * @return string
      */
     public function getFacons()
     {
@@ -247,75 +282,76 @@ class Recette
     }
 
     /**
-     * Set time
+     * Set temps
      *
-     * @param string $time
+     * @param string $temps
      *
      * @return Recette
      */
-    public function setTime($time)
+    public function setTemps($temps)
     {
-        $this->time = $time;
+        $this->temps = $temps;
 
         return $this;
     }
 
     /**
-     * Get time
+     * Get temps
      *
      * @return string
      */
-    public function getTime()
+    public function getTemps()
     {
-        return $this->time;
+        return $this->temps;
     }
 
     /**
-     * Set level
+     * Set niveau
      *
-     * @param string $level
+     * @param string $niveau
      *
      * @return Recette
      */
-    public function setLevel($level)
+    public function setNiveau($niveau)
     {
-        $this->level = $level;
+        $this->niveau = $niveau;
 
         return $this;
     }
 
     /**
-     * Get level
+     * Get niveau
      *
      * @return string
      */
-    public function getLevel()
+    public function getNiveau()
     {
-        return $this->level;
+        return $this->niveau;
     }
 
+
     /**
-     * Set valid
+     * Set valide
      *
-     * @param boolean $valid
+     * @param boolean $valide
      *
      * @return Recette
      */
-    public function setValid($valid)
+    public function setValide($valide)
     {
-        $this->valid = $valid;
+        $this->valide = $valide;
 
         return $this;
     }
 
     /**
-     * Get valid
+     * Get valide
      *
      * @return bool
      */
-    public function getValid()
+    public function getValide()
     {
-        return $this->valid;
+        return $this->valide;
     }
 
     /**
@@ -341,5 +377,45 @@ class Recette
     {
         return $this->status;
     }
-}
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->tags = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
+    /**
+     * Add tag
+     *
+     * @param \RecetteBundle\Entity\Tags $tag
+     *
+     * @return Recette
+     */
+    public function addTag(\RecetteBundle\Entity\Tags $tag)
+    {
+        $this->tags[] = $tag;
+
+        return $this;
+    }
+
+    /**
+     * Remove tag
+     *
+     * @param \RecetteBundle\Entity\Tags $tag
+     */
+    public function removeTag(\RecetteBundle\Entity\Tags $tag)
+    {
+        $this->tags->removeElement($tag);
+    }
+
+    /**
+     * Get tags
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getTags()
+    {
+        return $this->tags;
+    }
+}
