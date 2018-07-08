@@ -26,12 +26,22 @@
           <i class="fa fa-search" aria-hidden="true"><span> Rechercher</span></i>
         </a>
       </li>
-      <li class="li-left-hidden">
-        <a href="{{ path('logout') }}">
-          <i class="fa fa-share-alt" aria-hidden="true"><span> Partager</span></i>
-        </a>
-      </li>
-      
+
+
+      {% if app.user %}
+        <li class="li-left-hidden">
+            <a href="{{ path('dashboard') }}">
+                <i class="fa fa-user-circle" aria-hidden="true"><span> Hi, {{ app.user.username }} </span></i>
+            </a>
+        </li>
+      {% else %}
+        <li class="li-left-hidden">
+            <a href="{{ path('login') }}">
+                <i class="fa fa-user" aria-hidden="true"><span> login </span></i>
+            </a>
+        </li>
+      {% endif %}
+
     </ul>
 
   
@@ -41,16 +51,24 @@
           <i class="fa fa-search" aria-hidden="true"><span> Rechercher</span></i>  
         </a>
       </li>
-      <li>
-        <a href="{{ path('logout') }}">
-          <i class="fa fa-share-alt" aria-hidden="true"><span> Partager</span></i>
-        </a>
-      </li>
+      {% if app.user %}
+          <li>
+              <a href="{{ path('dashboard') }}">
+                  <i class="fa fa-user-circle" aria-hidden="true"><span> Hi, {{ app.user.username }} </span></i>
+              </a>
+          </li>
+      {% else %}
+          <li>
+              <a href="{{ path('login') }}">
+                  <i class="fa fa-user" aria-hidden="true"><span> login </span></i>
+              </a>
+          </li>
+      {% endif %}
     </ul>
         
   </div>
 </nav>
-
+<!--
 <form action="" autocomplete="off" class="form-horizontal" method="post" accept-charset="utf-8">
     <div class="input-group">
         <input name="searchtext" value="" class="form-control" type="text">
@@ -61,3 +79,4 @@
         </span>
     </div>
 </form>
+-->
