@@ -4,6 +4,8 @@ namespace RecetteBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
+use SecuriteBundle\Entity\User;
+
 /**
  * Recette
  *
@@ -24,16 +26,16 @@ class Recette
     /**
      * @var string
      *
-     * @ORM\Column(name="nom", type="string", length=255)
+     * @ORM\Column(name="titre", type="string", length=255)
      */
-    private $nom;
+    private $titre;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="profil", type="string", length=255)
+     * @ORM\Column(name="image", type="string", length=255)
      */
-    private $profil;
+    private $image;
 
     /**
      * @var string
@@ -99,9 +101,20 @@ class Recette
     private $status;
 
     /**
-     * @ORM\ManyToMany(targetEntity="Tags")
+     * @ORM\ManyToMany(targetEntity="Tags", cascade={"persist"})
      */
-    private $tags;
+    private $tags = [];
+
+    /**
+     * @var User
+     *
+     * @ORM\ManyToOne(targetEntity="SecuriteBundle\Entity\User", inversedBy="recettes")
+     */
+    private $user;
+
+
+
+
 
     /**
      * Get id
@@ -114,51 +127,51 @@ class Recette
     }
 
     /**
-     * Set nom
+     * Set titre
      *
-     * @param string $nom
+     * @param string $titre
      *
      * @return Recette
      */
-    public function setNom($nom)
+    public function setTitre($titre)
     {
-        $this->nom = $nom;
+        $this->titre = $titre;
 
         return $this;
     }
 
     /**
-     * Get nom
+     * Get titre
      *
      * @return string
      */
-    public function getNom()
+    public function getTitre()
     {
-        return $this->nom;
+        return $this->titre;
     }
 
     /**
-     * Set profil
+     * Set image
      *
-     * @param string $profil
+     * @param string $image
      *
      * @return Recette
      */
-    public function setProfil($profil)
+    public function setImage($image)
     {
-        $this->profil = $profil;
+        $this->image = $image;
 
         return $this;
     }
 
     /**
-     * Get profil
+     * Get image
      *
      * @return string
      */
-    public function getProfil()
+    public function getImage()
     {
-        return $this->profil;
+        return $this->image;
     }
 
     /**
@@ -376,6 +389,31 @@ class Recette
     public function getStatus()
     {
         return $this->status;
+    }
+    
+
+    /**
+     * Set user
+     *
+     * @param \SecuriteBundle\Entity\User $user
+     *
+     * @return Recette
+     */
+    public function setUser(\SecuriteBundle\Entity\User $user = null)
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * Get user
+     *
+     * @return \SecuriteBundle\Entity\User
+     */
+    public function getUser()
+    {
+        return $this->user;
     }
     /**
      * Constructor
