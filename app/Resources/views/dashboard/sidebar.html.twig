@@ -42,12 +42,16 @@
 		FAQ
 		</a>
 	</li>
-	<li>
-		<a href="#">
-		<i class="glyphicon glyphicon-send"></i>
-		Contact
-		</a>
-	</li>
+
+    {% if is_granted('ROLE_ADMIN') %}
+		<li>
+			<a href="{{ path('userlist') }}">
+				<i class="glyphicon glyphicon-send"></i>
+				Gestion Users
+			</a>
+		</li>
+    {% endif %}
+
 </ul>
 
 <ul class="list-unstyled CTAs">
