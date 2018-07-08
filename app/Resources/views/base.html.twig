@@ -20,11 +20,13 @@
         <!-- google font style css-->
         <link href="https://fonts.googleapis.com/css?family=Lobster+Two|Bellefair|Parisienne|Montserrat|Open+Sans:400,700" rel="stylesheet"> 
         {% block stylesheets %}{% endblock %}
+
     </head>
     <body>
         {{ include('default/navbar.html.twig') }}
         {% block body %}{% endblock %}
-      
+
+
 
         <!-- jquery js-->
         <script type="text/javascript" src="{{ asset('assets/js/jquery.min.js') }}"></script>
