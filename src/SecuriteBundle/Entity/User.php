@@ -4,6 +4,7 @@ namespace SecuriteBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
+use RecetteBundle\Entity\Recette;
 
 /**
  * User
@@ -25,28 +26,28 @@ class User implements UserInterface
     /**
      * @var string
      *
-     * @ORM\Column(name="username", type="string", length=255)
+     * @ORM\Column(name="username", type="string", length=255, unique=true)
      */
     private $username;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="firstname", type="string", length=255)
+     * @ORM\Column(name="firstname", type="string", length=255, nullable=true)
      */
     private $firstname;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="lastname", type="string", length=255)
+     * @ORM\Column(name="lastname", type="string", length=255, nullable=true)
      */
     private $lastname;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="sex", type="string", length=255)
+     * @ORM\Column(name="sex", type="string", length=255, nullable=true)
      */
     private $sex;
 
@@ -78,6 +79,12 @@ class User implements UserInterface
      * @ORM\Column(name="roles", type="json_array", nullable=true)
      */
     private $roles = [];
+
+    /**
+     * @var Recette
+     * @ORM\OneToMany(targetEntity="RecetteBundle\Entity\Recette", mappedBy="user")
+     */
+    private $recettes;
 
     /**
      * Get id
@@ -328,5 +335,45 @@ class User implements UserInterface
     {
         // TODO: Implement eraseCredentials() method.
     }
-}
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->recettes = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
+    /**
+     * Add recette
+     *
+     * @param \RecetteBundle\Entity\Recette $recette
+     *
+     * @return User
+     */
+    public function addRecette(\RecetteBundle\Entity\Recette $recette)
+    {
+        $this->recettes[] = $recette;
+
+        return $this;
+    }
+
+    /**
+     * Remove recette
+     *
+     * @param \RecetteBundle\Entity\Recette $recette
+     */
+    public function removeRecette(\RecetteBundle\Entity\Recette $recette)
+    {
+        $this->recettes->removeElement($recette);
+    }
+
+    /**
+     * Get recettes
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getRecettes()
+    {
+        return $this->recettes;
+    }
+}

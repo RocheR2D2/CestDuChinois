@@ -17,6 +17,21 @@ class UserFixtures extends Fixture
 {
     public function load(ObjectManager $manager) {
 
+
+
+        for ($i = 0; $i < 10; $i++) {
+            $user = new User();
+            $user->setFirstname('firstname'.$i);
+            $user->setLastname('lastname'.$i);
+            $user->setSex('F');
+            $user->setEmail('user'.$i.'@hotmail.com');
+            $user->setPassword('$2y$13$vbonEYxHT6T9iSF1ePGQ3uwDMXJ7L7DSQsnqKiyjad6mDpA1yaQHq');
+            $user->setUsername('user'.$i);
+            $user->setRoles(['ROLE_USER']);
+            $manager->persist($user);
+        }
+
+
         $user1 = new User();
         $user1->setFirstname('Julia');
         $user1->setLastname('NVN');
@@ -24,7 +39,7 @@ class UserFixtures extends Fixture
         $user1->setEmail('julia.navennec@hotmail.com');
         $user1->setPassword('$2y$13$vbonEYxHT6T9iSF1ePGQ3uwDMXJ7L7DSQsnqKiyjad6mDpA1yaQHq');
         $user1->setUsername('julianvn');
-        $user1->setRoles(['ROLE_USER']);
+        $user1->setRoles(['ROLE_ADMIN']);
 
 
         $user2 = new User();
@@ -34,7 +49,7 @@ class UserFixtures extends Fixture
         $user2->setEmail('rocher2d2@gmail.com');
         $user2->setPassword('$2y$13$vbonEYxHT6T9iSF1ePGQ3uwDMXJ7L7DSQsnqKiyjad6mDpA1yaQHq');
         $user2->setUsername('rocher2d2');
-        $user2->setRoles(['ROLE_ADMIN']);
+        $user2->setRoles(['ROLE_SUPER_ADMIN']);
 
 
         $manager->persist($user1);
