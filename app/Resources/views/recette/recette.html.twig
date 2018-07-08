@@ -1,1 +1,39 @@
-recette
+    {{ form_start(form) }}
+    <br>
+    {{ form_errors(form) }}
+    <br>
+     {{ form_label(form.titre) }}
+     {{ form_widget(form.titre) }}
+
+     {{ form_label(form.image) }}
+     {{ form_widget(form.image) }}
+
+     {{ form_label(form.description) }}
+     {{ form_widget(form.description) }}
+
+
+     {{ form_label(form.etape) }}
+     {{ form_widget(form.etape) }}
+
+     {{ form_label(form.ingredient) }}
+     {{ form_widget(form.ingredient) }}
+
+     {{ form_label(form.saveur) }}
+     {{ form_widget(form.saveur) }}
+
+     {{ form_label(form.facons) }}
+     {{ form_widget(form.facons) }}
+
+     {{ form_label(form.temps) }}
+     {{ form_widget(form.temps) }}
+
+     {{ form_label(form.niveau) }}
+     {{ form_widget(form.niveau) }}
+
+     {{ form_label(form.tags) }}
+     {{ form_widget(form.tags) }}
+
+     {{ form_label(form.register) }}
+     {{ form_widget(form.register) }}
+
+{{ form_end(form) }}

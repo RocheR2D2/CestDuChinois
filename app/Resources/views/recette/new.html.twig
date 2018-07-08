@@ -1,16 +1,65 @@
-{% extends 'base.html.twig' %}
+{% extends 'dashboard/index.html.twig' %}
 
-{% block body %}
-    <h1>Recette creation</h1>
+{% block content %}
+    <div class="scroll-content">
+        <h3 class="text-center content-title">Ajouter Une Recette</h3><br>
+        {#
+        {{ form_start(form) }}
+            {{ form_widget(form) }}
+            <input type="submit" value="Create" />
+        {{ form_end(form) }}
+        #}
 
-    {{ form_start(form) }}
-        {{ form_widget(form) }}
-        <input type="submit" value="Create" />
-    {{ form_end(form) }}
 
-    <ul>
-        <li>
-            <a href="{{ path('recette_index') }}">Back to the list</a>
-        </li>
-    </ul>
+        <div class="bs-example">
+            <div class="">
+                {{ form_start(form) }}
+                    {{ form_errors(form) }}
+                    {% for field in form %}
+
+                        {% if loop.index != loop.last %}
+
+                        <div class="panel panel-black" id="accordion">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    <a data-toggle="collapse" aria-expanded="true" data-parent="#accordion" href="#{{ loop.index }}">
+                                        <span class="glyphicon glyphicon-minus pull-right"></span>
+                                        <i class="fas fa-concierge-bell" aria-hidden="false"><span></span></i>
+                                        {{ form_label(field) }}
+                                    </a>
+                                </h4>
+                            </div>
+                            <div id="{{ loop.index }}" class="panel-collapse collapse in">
+                                <div class="panel-body">
+
+
+                                            {% if loop.index == 4 %}
+                                                <p class="add-one-step">+ Ajouter une étape</p>
+                                            {% endif %}
+
+                                            {{ form_widget(field) }}
+
+                                </div>
+                            </div>
+                        </div>
+                        {% endif %}
+                    {% endfor %}
+
+                    <div class="col-md-12 text-center">
+                        <button type="submit" value="brouillon" class="recette-btn btn btn-info">Brouillon</button>
+                        <button type="submit" value="publier" class="recette-btn btn btn-warning">Publier</button>
+                    </div>
+
+
+                {{ form_end(form) }}
+            </div>
+        </div>
+
+    </div>
+
 {% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    <script type="text/javascript" src="{{ asset('assets/js/dashboard.js') }}"></script>
+{% endblock %}
+
