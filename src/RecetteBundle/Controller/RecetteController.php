@@ -3,6 +3,7 @@
 namespace RecetteBundle\Controller;
 
 use RecetteBundle\Entity\Recette;
+use RecetteBundle\Form\RecetteType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -13,12 +14,14 @@ use Symfony\Component\HttpFoundation\Request;
  *
  * @Route("recette")
  */
+
+
 class RecetteController extends Controller
 {
     /**
      * Lists all recette entities.
      *
-     * @Route("/", name="recette_index")
+     * @Route("/xxxxxxx", name="recette_index")
      * @Method("GET")
      */
     public function indexAction()
@@ -32,16 +35,11 @@ class RecetteController extends Controller
         ));
     }
 
-    /**
-     * Creates a new recette entity.
-     *
-     * @Route("/new", name="recette_new")
-     * @Method({"GET", "POST"})
-     */
+    /*
     public function newAction(Request $request)
     {
         $recette = new Recette();
-        $form = $this->createForm('RecetteBundle\Form\RecetteType', $recette);
+        $form = $this->createForm(RecetteType::class, $recette);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -53,15 +51,15 @@ class RecetteController extends Controller
         }
 
         return $this->render('recette/new.html.twig', array(
-            'recette' => $recette,
             'form' => $form->createView(),
         ));
     }
+    */
 
     /**
      * Finds and displays a recette entity.
      *
-     * @Route("/{id}", name="recette_show")
+     * @Route("/xxxxxxx/{id}", name="recette_show")
      * @Method("GET")
      */
     public function showAction(Recette $recette)
@@ -77,7 +75,7 @@ class RecetteController extends Controller
     /**
      * Displays a form to edit an existing recette entity.
      *
-     * @Route("/{id}/edit", name="recette_edit")
+     * @Route("/xxxxxxxxx/{id}/edit", name="recette_edit")
      * @Method({"GET", "POST"})
      */
     public function editAction(Request $request, Recette $recette)
