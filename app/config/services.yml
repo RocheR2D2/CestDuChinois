@@ -35,5 +35,15 @@ services:
     #         $someArgument: 'some_value'
 
     SecuriteBundle\DataFixtures\:
-            resource: '../../src/SecuriteBundle/DataFixtures'
+        resource: '../../src/SecuriteBundle/DataFixtures'
+        tags: ['doctrine.fixture.orm']
+
+    RecetteBundle\DataFixtures\:
+            resource: '../../src/RecetteBundle/DataFixtures'
             tags: ['doctrine.fixture.orm']
+
+    app.recette.voter:
+        class: RecetteBundle\Securite\RecetteVoter
+        tags:
+             - { name: securite.voter}
+        public: true
