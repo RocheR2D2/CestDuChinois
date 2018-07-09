@@ -33,7 +33,7 @@ class Recette
     /**
      * @var string
      *
-     * @ORM\Column(name="image", type="string", length=255)
+     * @ORM\Column(name="image", type="string", length=255, nullable=true)
      */
     private $image;
 
@@ -47,28 +47,28 @@ class Recette
     /**
      * @var array
      *
-     * @ORM\Column(name="etape", type="json_array")
+     * @ORM\Column(name="etape", type="json_array", nullable=true)
      */
     private $etape;
 
     /**
      * @var array
      *
-     * @ORM\Column(name="ingredient", type="json_array")
+     * @ORM\Column(name="ingredient", type="json_array",nullable=true)
      */
     private $ingredient;
 
     /**
      * @var array
      *
-     * @ORM\Column(name="saveur", type="json_array")
+     * @ORM\Column(name="saveur", type="json_array",nullable=true)
      */
     private $saveur;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="facons", type="string", length=255)
+     * @ORM\Column(name="facons", type="string", length=255,nullable=true)
      */
     private $facons;
 
@@ -91,14 +91,14 @@ class Recette
      *
      * @ORM\Column(name="valide", type="boolean")
      */
-    private $valide;
+    private $valide = 0;
 
     /**
      * @var bool
      *
      * @ORM\Column(name="status", type="boolean")
      */
-    private $status;
+    private $status = 0;
 
     /**
      * @ORM\ManyToMany(targetEntity="Tags", cascade={"persist"})
@@ -395,11 +395,11 @@ class Recette
     /**
      * Set user
      *
-     * @param \SecuriteBundle\Entity\User $user
+     * @param User $user
      *
      * @return Recette
      */
-    public function setUser(\SecuriteBundle\Entity\User $user = null)
+    public function setUser(User $user = null)
     {
         $this->user = $user;
 
