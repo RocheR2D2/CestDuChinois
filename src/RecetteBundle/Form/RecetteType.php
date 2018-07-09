@@ -31,6 +31,7 @@ class RecetteType extends AbstractType
             ->add('image', FileType::class, [
                 'label' => 'Image',
                 'attr'=>[
+                    //'style' => 'display:none',
                     'class' => 'form-control',
                     'name' => 'image',
                 ]
@@ -46,8 +47,7 @@ class RecetteType extends AbstractType
             ->add('etape', EtapeType::class, [
                 'label' => 'Étape',
                 'attr'=>[
-                    'class' => 'form-control',
-                    'style' => 'display:none',
+                    //'style' => 'display:none',
                     'name' => 'etape[]',
                 ]
             ])
@@ -57,6 +57,7 @@ class RecetteType extends AbstractType
                 'attr'=>[
                     'class' => 'form-control',
                     'name' => 'ingredient[]',
+                    //'style' => 'display:none',
                 ]
             ])
             ->add('saveur', ChoiceType::class, [
@@ -108,9 +109,11 @@ class RecetteType extends AbstractType
                     'difficile' => 2,
                 ],
             ])
-            ->add('tags', TagsType::class);
+            ->add('tags')
 
-
+            ->add('save', SubmitType::class, array(
+                'attr' => array('class' => 'btn btn-warning'),
+            ));
             //->getForm();
     }
 
