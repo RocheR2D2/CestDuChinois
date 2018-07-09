@@ -2,7 +2,9 @@
 
 namespace RecetteBundle\Controller;
 
+use RecetteBundle\Entity\Product;
 use RecetteBundle\Entity\Recette;
+use RecetteBundle\Form\ProductType;
 use RecetteBundle\Form\RecetteType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -38,10 +40,11 @@ class DefaultController extends Controller
             return new JsonResponse(dump($form));
         }
 
-        return $this->render('recette/new.html.twig', [
+        return $this->render('recette/recette.html.twig', [
             'form' => $form->createView()
         ]);
     }
+
 
 
 
