@@ -1,39 +1,65 @@
-    {{ form_start(form) }}
-    <br>
-    {{ form_errors(form) }}
-    <br>
-     {{ form_label(form.titre) }}
-     {{ form_widget(form.titre) }}
+{% extends 'dashboard/index.html.twig' %}
 
-     {{ form_label(form.image) }}
-     {{ form_widget(form.image) }}
+{% block content %}
+ <div class="scroll-content">
+  <h3 class="text-center content-title">Ajouter Une Recette</h3><br>
+     {#
+     {{ form_start(form) }}
+         {{ form_widget(form) }}
+         <input type="submit" value="Create" />
+     {{ form_end(form) }}
+     #}
 
-     {{ form_label(form.description) }}
-     {{ form_widget(form.description) }}
+
+  <div class="bs-example">
+   <div class="">
+       {{ form_start(form) }}
+       {{ form_errors(form) }}
+       {% for field in form %}
+
+           {% if loop.index != loop.last %}
+
+            <div class="panel panel-black" id="accordion">
+             <div class="panel-heading">
+              <h4 class="panel-title">
+               <a data-toggle="collapse" aria-expanded="true" data-parent="#accordion" href="#{{ loop.index }}">
+                <span class="glyphicon glyphicon-minus pull-right"></span>
+                <i class="fas fa-concierge-bell" aria-hidden="false"><span></span></i>
+                   {{ form_label(field) }}
+               </a>
+              </h4>
+             </div>
+             <div id="{{ loop.index }}" class="panel-collapse collapse in">
+              <div class="panel-body">
 
 
-     {{ form_label(form.etape) }}
-     {{ form_widget(form.etape) }}
+                  {% if loop.index == 4 %}
+                   <p class="add-one-step">+ Ajouter une étape</p>
+                  {% endif %}
 
-     {{ form_label(form.ingredient) }}
-     {{ form_widget(form.ingredient) }}
+                  {{ form_widget(field) }}
 
-     {{ form_label(form.saveur) }}
-     {{ form_widget(form.saveur) }}
+              </div>
+             </div>
+            </div>
+           {% endif %}
+       {% endfor %}
 
-     {{ form_label(form.facons) }}
-     {{ form_widget(form.facons) }}
+    <div class="col-md-12 text-center">
+     <button type="submit" value="brouillon" class="recette-btn btn btn-info">Brouillon</button>
+     <button type="submit" value="publier" class="recette-btn btn btn-warning">Publier</button>
+    </div>
 
-     {{ form_label(form.temps) }}
-     {{ form_widget(form.temps) }}
 
-     {{ form_label(form.niveau) }}
-     {{ form_widget(form.niveau) }}
+       {{ form_end(form) }}
+   </div>
+  </div>
 
-     {{ form_label(form.tags) }}
-     {{ form_widget(form.tags) }}
+ </div>
 
-     {{ form_label(form.register) }}
-     {{ form_widget(form.register) }}
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+ <script type="text/javascript" src="{{ asset('assets/js/dashboard.js') }}"></script>
+{% endblock %}
 
-{{ form_end(form) }}
