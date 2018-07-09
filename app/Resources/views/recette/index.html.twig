@@ -1,0 +1,68 @@
+{% extends 'dashboard/index.html.twig' %}
+
+{% block content %}
+    <div class="scroll-content">
+
+
+            {% if n_recettes == 0 %}
+                <h3>Désolé, vous n'avez rien publié !</h3>
+            {% else %}
+                <h1>Recettes list</h1>
+
+                <table>
+                    <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Titre</th>
+                        <th>Image</th>
+                        <th>Description</th>
+                        <th>Etape</th>
+                        <th>Ingredient</th>
+                        <th>Saveur</th>
+                        <th>Facons</th>
+                        <th>Temps</th>
+                        <th>Niveau</th>
+                        <th>Valide</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for recette in recettes %}
+                        <tr>
+                            <td><a href="{{ path('recette_show', { 'id': recette.id }) }}">{{ recette.id }}</a></td>
+                            <td>{{ recette.titre }}</td>
+                            <td>{{ recette.image }}</td>
+                            <td>{{ recette.description }}</td>
+                            <td>{{ recette.etape }}</td>
+                            <td>{{ recette.ingredient }}</td>
+                            <td>{{ recette.saveur }}</td>
+                            <td>{{ recette.facons }}</td>
+                            <td>{{ recette.temps }}</td>
+                            <td>{{ recette.niveau }}</td>
+                            <td>{% if recette.valide %}Yes{% else %}No{% endif %}</td>
+                            <td>{% if recette.status %}Yes{% else %}No{% endif %}</td>
+                            <td>
+                                <ul>
+                                    <li>
+                                        <a href="{{ path('recette_show', { 'id': recette.id }) }}">show</a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ path('recette_edit', { 'id': recette.id }) }}">edit</a>
+                                    </li>
+                                </ul>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            {% endif %}
+
+            <ul>
+                <li>
+                    <a href="{{ path('recette_new') }}">Veuillez ajouter une nouvelle recette!</a>
+                </li>
+            </ul>
+
+    </div>
+{% endblock %}

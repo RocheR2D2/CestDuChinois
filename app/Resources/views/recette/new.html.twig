@@ -1,0 +1,19 @@
+{% extends 'dashboard/index.html.twig' %}
+
+{% block content %}
+    <div class="scroll-content">
+        <h3 class="content-title">Ajouter Une Recette</h3><br>
+
+
+        {{ form_start(form) }}
+        {{ form_widget(form) }}
+        {{ form_end(form) }}
+
+        <ul>
+            <li>
+                <a href="{{ path('recette_index') }}">Back to the list</a>
+            </li>
+        </ul>
+
+    </div>
+{% endblock %}
