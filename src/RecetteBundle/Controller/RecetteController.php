@@ -44,6 +44,11 @@ class RecetteController extends Controller
     {
         $recette = new Recette();
         $form = $this->createForm('RecetteBundle\Form\RecetteType', $recette);
+
+
+        $formfieldNames = $this->getChildrenNames($form);
+
+
         $form->handleRequest($request);
 
 
@@ -53,7 +58,6 @@ class RecetteController extends Controller
             $recette->setUser($this->getUser());
             $recette->setImage($form->getData());
 
-            dump($recette);
 
 
             $em->persist($recette);
@@ -62,8 +66,11 @@ class RecetteController extends Controller
             return $this->redirectToRoute('recette_show', array('id' => $recette->getId()));
         }
 
+
+
         return $this->render('recette/new.html.twig', array(
             'recette' => $recette,
+            'formfieldNames' => $formfieldNames,
             'form' => $form->createView(),
         ));
     }
@@ -143,5 +150,18 @@ class RecetteController extends Controller
             ->setMethod('DELETE')
             ->getForm()
         ;
+    }
+
+
+    private function getChildrenNames($form_views) {
+
+        $childrens = $form_views->all();
+        $childrenNames = [];
+        foreach($childrens as $child) {
+            array_push($childrenNames,$child->getName());
+        }
+
+
+        return $childrenNames;
     }
 }

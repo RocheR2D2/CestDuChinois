@@ -45,9 +45,7 @@ class Recette
     private $description;
 
     /**
-     * @var array
-     *
-     * @ORM\Column(name="etape", type="json_array", nullable=true)
+     * @ORM\OneToMany(targetEntity="Etape", mappedBy="recette", cascade={"persist"})
      */
     private $etape;
 
@@ -198,29 +196,6 @@ class Recette
         return $this->description;
     }
 
-    /**
-     * Set etape
-     *
-     * @param array $etape
-     *
-     * @return Recette
-     */
-    public function setEtape($etape)
-    {
-        $this->etape = $etape;
-
-        return $this;
-    }
-
-    /**
-     * Get etape
-     *
-     * @return array
-     */
-    public function getEtape()
-    {
-        return $this->etape;
-    }
 
     /**
      * Set ingredient
@@ -455,5 +430,39 @@ class Recette
     public function getTags()
     {
         return $this->tags;
+    }
+
+    /**
+     * Add etape
+     *
+     * @param \RecetteBundle\Entity\Etape $etape
+     *
+     * @return Recette
+     */
+    public function addEtape(\RecetteBundle\Entity\Etape $etape)
+    {
+        $this->etape[] = $etape;
+
+        return $this;
+    }
+
+    /**
+     * Remove etape
+     *
+     * @param \RecetteBundle\Entity\Etape $etape
+     */
+    public function removeEtape(\RecetteBundle\Entity\Etape $etape)
+    {
+        $this->etape->removeElement($etape);
+    }
+
+    /**
+     * Get etape
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getEtape()
+    {
+        return $this->etape;
     }
 }

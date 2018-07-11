@@ -34,7 +34,7 @@
 
 
                   {% if loop.index == 4 %}
-                   <p class="add-one-step">+ Ajouter une étape</p>
+
                   {% endif %}
 
                   {{ form_widget(field) }}
@@ -60,6 +60,7 @@
 {% endblock %}
 {% block javascripts %}
     {{ parent() }}
- <script type="text/javascript" src="{{ asset('assets/js/dashboard.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('assets/js/dashboard.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('assets/js/dynamique_etape.js') }}"></script>
 {% endblock %}
 
