@@ -44,12 +44,16 @@ class RecetteType extends AbstractType
                 ]
             ])
 
-            ->add('etape', EtapeType::class, [
-                'label' => 'Étape',
-                'attr'=>[
-                    //'style' => 'display:none',
-                    'name' => 'etape[]',
-                ]
+            ->add('etape', CollectionType::class, [
+                'entry_type' => EtapeType::class,
+                'entry_options' => [
+                    'label' => false
+                ],
+                'by_reference' => false,
+                // this allows the creation of new forms and the prototype too
+                'allow_add' => true,
+                // self explanatory, this one allows the form to be removed
+                'allow_delete' => true
             ])
 
             ->add('ingredient', TextType::class, [
@@ -110,11 +114,13 @@ class RecetteType extends AbstractType
                 ],
             ])
             ->add('tags')
-
+            /*
             ->add('save', SubmitType::class, array(
                 'attr' => array('class' => 'btn btn-warning'),
-            ));
-            //->getForm();
+            ))
+            */
+            ;
+
     }
 
 
