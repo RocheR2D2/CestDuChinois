@@ -36,17 +36,10 @@
                                     {% if loop.index == 4 %}
 
                                         <div id="etape_liste" data-prototype="{{ form_widget(field.vars.prototype)|e('html_attr') }}">
-                                            {% for row in field %}
-                                                <div class="panel sous-panel panel-black">
-                                                    <div class="panel-heading">
-                                                        <strong>{{ row.vars.value.title }}</strong>
-                                                    </div>
-                                                    <div class="panel-body">
-                                                        {{ form_row(row) }}
-                                                    </div>
-                                                </div>
-                                            {% endfor %}
+
                                         </div>
+
+                                        <a href="#" class="add-one-step">Add new item</a>
                                     {% endif %}
 
 

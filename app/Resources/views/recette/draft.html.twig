@@ -1,0 +1,10 @@
+{% for row in field %}
+    <div class="panel sous-panel panel-black">
+        <div class="panel-heading">
+            <strong>{{ row.vars.value.title }}</strong>
+        </div>
+        <div class="panel-body">
+            {{ form_row(row) }}
+        </div>
+    </div>
+{% endfor %}
