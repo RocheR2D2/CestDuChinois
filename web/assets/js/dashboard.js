@@ -8,15 +8,22 @@ $(document).ready(function(){
         $(this).parent().find(".glyphicon").removeClass("glyphicon-minus").addClass("glyphicon-plus");
     });
 
+    /*
 
     $('.add-one-step').click(function(){
-        /*
+
         $('.dynamic-element').first().clone().appendTo('.dynamic-stuff').show();
         attach_delete();
-        */
+
         alert('lol');
     });
+    */
 
+
+
+
+
+    //Etape
 
 
 
