@@ -345,18 +345,15 @@ label.required {
 }
 
 .add-one-step{
-    color:#f14444;
+    color: #f14444 !important;
     text-align:left;
     font-weight:bold;
     cursor:pointer;
     margin-top:10px;
     font-size:17px;
+    font-family: 'Lobster Two', cursive;
 }
 
-
-.add-one-step:hover {
-    color:#f14444;
-}
 
 .recette-btn {
     text-align:center;
