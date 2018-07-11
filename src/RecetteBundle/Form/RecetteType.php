@@ -68,7 +68,7 @@ class RecetteType extends AbstractType
                 'label' => 'Saveurs',
                 'attr'=>[
                     'name' => 'saveur',
-                    'style' => $fontcolor
+                    'style' => $fontcolor,
                 ],
                 'expanded' => true,
                 'multiple' => true,
@@ -78,6 +78,9 @@ class RecetteType extends AbstractType
                     'Acide ' => 2,
                     'Amer ' => 3,
                 ],
+                'label_attr' => [
+                    'class' => 'checkbox-inline',
+                ]
 
             ])
             ->add('facons', ChoiceType::class, [
@@ -93,6 +96,9 @@ class RecetteType extends AbstractType
                     'sauté' => 1,
                     'à vapeur' => 2,
                     'pression' => 3,
+                ],
+                'label_attr' => [
+                    'class' => 'checkbox-inline'
                 ]
             ])
             ->add('temps', TextType::class, [
