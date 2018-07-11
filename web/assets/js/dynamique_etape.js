@@ -2,7 +2,7 @@
 // this variable is the list in the dom, it's initiliazed when the document is ready
 var $collectionHolder;
 // the link which we click on to add new items
-var $addNewItem = $('<a href="#" class="btn btn-xs btn-warning">Ajouter</a>');
+var $addNewItem = $('.add-one-step');
 // when the page is loaded and ready
 $(document).ready(function () {
     // get the collectionHolder, initilize the var by getting the list;
@@ -49,11 +49,7 @@ function addNewForm() {
     // create the panel
     // this is the panel that will be appending to the collectionHolder
     var $panel = $('<div class="panel sous-panel panel-black" id="accordion">' +
-                        '<div class="panel-heading">' +
-                            '<h4 class="panel-title">' +
 
-                            '</h4>' +
-                        '</div>' +
                     '</div>');
 
 
