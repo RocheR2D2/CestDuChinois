@@ -3,9 +3,13 @@
 namespace RecetteBundle\Controller;
 
 use RecetteBundle\Entity\Recette;
+use RecetteBundle\Services\FileManager;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\Filesystem\Filesystem;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Recette controller.
@@ -14,6 +18,14 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component
  */
 class RecetteController extends Controller
 {
+
+    private $fileSysteme;
+
+    public function __construct()
+    {
+        $this->fileSysteme = new Filesystem();
+    }
+
     /**
      * Lists all recette entities.
      *
@@ -42,18 +54,63 @@ class RecetteController extends Controller
      */
     public function newAction(Request $request)
     {
+
+        $fileSysteme = $this->fileSysteme;
+
+        //$fileManager = $this->get('file.manager');
+
+
+
+
+        $uploadRootPath = $this->getParameter('files_directory');
+        $username = $this->getUser()->getUsername();
+        $userUploadPath = $uploadRootPath.$username.'/';
+
+        //Création du dossier par username
+        if($fileSysteme->exists($userUploadPath) == false) {
+            $fileSysteme->mkdir($userUploadPath,0700);
+        }
+
+        //Création de Form
         $recette = new Recette();
         $form = $this->createForm('RecetteBundle\Form\RecetteType', $recette);
 
-
+        /*
         $formfieldNames = $this->getChildrenNames($form);
-
+        dump($formfieldNames);
+        die();
+        */
 
         $form->handleRequest($request);
 
 
 
         if ($form->isSubmitted()) {
+
+            //upload the file
+            /**
+             * @var UploadedFile $profil_file
+             */
+            $image_file = $recette->getImage();
+            $image_filename = md5(uniqid()) . '.' . $image_file->guessExtension();
+
+            $recetteUploadPath = $userUploadPath.$recette->getTitre().'/';
+
+            if($fileSysteme->exists($recetteUploadPath) == false) {
+                $fileSysteme->mkdir($recetteUploadPath,0700);
+            }
+
+            $image_file->move(
+                $recetteUploadPath,
+                $image_filename
+            );
+
+
+
+           // $etapes = $recette->getEtape();
+
+
+            /*
             $em = $this->getDoctrine()->getManager();
             $recette->setUser($this->getUser());
             $recette->setImage($form->getData());
@@ -62,7 +119,9 @@ class RecetteController extends Controller
 
             $em->persist($recette);
             $em->flush();
+            */
 
+            die();
             return $this->redirectToRoute('recette_show', array('id' => $recette->getId()));
         }
 
