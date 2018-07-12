@@ -19,13 +19,6 @@ use Symfony\Component\HttpFoundation\Request;
 class RecetteController extends Controller
 {
 
-    private $fileSysteme;
-
-    public function __construct()
-    {
-        $this->fileSysteme = new Filesystem();
-    }
-
     /**
      * Lists all recette entities.
      *
@@ -54,74 +47,66 @@ class RecetteController extends Controller
      */
     public function newAction(Request $request)
     {
-
-        $fileSysteme = $this->fileSysteme;
-
-        //$fileManager = $this->get('file.manager');
-
-
-
+        //L'instanciation de FileSysteme
+        $fileSysteme = new Filesystem();
+        // Get File Manager Service
+        $file_manger = $this->get('file.manager');
 
         $uploadRootPath = $this->getParameter('files_directory');
         $username = $this->getUser()->getUsername();
-        $userUploadPath = $uploadRootPath.$username.'/';
+        $userUploadRootPath = $uploadRootPath.$username.'/';
 
-        //Création du dossier par username
-        if($fileSysteme->exists($userUploadPath) == false) {
-            $fileSysteme->mkdir($userUploadPath,0700);
-        }
+        // Vérification de l'existance du dossier Uploads
+        $file_manger->pathExsitence($fileSysteme, $userUploadRootPath);
 
-        //Création de Form
+        //Création du Form
         $recette = new Recette();
         $form = $this->createForm('RecetteBundle\Form\RecetteType', $recette);
-
-        /*
-        $formfieldNames = $this->getChildrenNames($form);
-        dump($formfieldNames);
-        die();
-        */
 
         $form->handleRequest($request);
 
 
 
-        if ($form->isSubmitted()) {
+        if ($form->isSubmitted() && $form->isValid()) {
+
 
             //upload the file
             /**
              * @var UploadedFile $profil_file
              */
+
+
+            $recetteUploadPath = $userUploadRootPath.$recette->getTitre().'/';
+
+            $file_manger->pathExsitence($fileSysteme, $recetteUploadPath);
+
             $image_file = $recette->getImage();
-            $image_filename = md5(uniqid()) . '.' . $image_file->guessExtension();
 
-            $recetteUploadPath = $userUploadPath.$recette->getTitre().'/';
+            $imagefilename = $file_manger->uploadFile($image_file, $recetteUploadPath);
 
-            if($fileSysteme->exists($recetteUploadPath) == false) {
-                $fileSysteme->mkdir($recetteUploadPath,0700);
+            $etapes = $recette->getEtapes();
+
+
+            if(sizeof($etapes) !== 0) {
+
+                foreach($etapes as $etape) {
+                    $etape_image_File = $etape->getEtapeImage();
+                    $etapeImagefilename = $file_manger->uploadFile($etape_image_File, $recetteUploadPath.'etapes');
+                    $etape->setEtapeImage($etapeImagefilename);
+
+                }
             }
+            $etapes2 = $recette->getEtapes();
 
-            $image_file->move(
-                $recetteUploadPath,
-                $image_filename
-            );
-
-
-
-           // $etapes = $recette->getEtape();
-
-
-            /*
             $em = $this->getDoctrine()->getManager();
-            $recette->setUser($this->getUser());
-            $recette->setImage($form->getData());
 
+            $recette->setUser($this->getUser());
+            $recette->setImage($imagefilename);
 
 
             $em->persist($recette);
             $em->flush();
-            */
 
-            die();
             return $this->redirectToRoute('recette_show', array('id' => $recette->getId()));
         }
 
@@ -129,7 +114,7 @@ class RecetteController extends Controller
 
         return $this->render('recette/new.html.twig', array(
             'recette' => $recette,
-            'formfieldNames' => $formfieldNames,
+            //'formfieldNames' => $formfieldNames,
             'form' => $form->createView(),
         ));
     }
