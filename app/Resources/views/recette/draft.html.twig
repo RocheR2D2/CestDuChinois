@@ -8,3 +8,79 @@
         </div>
     </div>
 {% endfor %}
+
+
+<h1>Recette</h1>
+
+<table class="table table-striped">
+    <tbody>
+    <tr>
+        <th>Id</th>
+        <td>{{ recette.id }}</td>
+    </tr>
+    <tr>
+        <th>Titre</th>
+        <td>{{ recette.titre }}</td>
+    </tr>
+    <tr>
+        <th>Image</th>
+        <td>{{ recette.image }}</td>
+    </tr>
+    <tr>
+        <th>Description</th>
+        <td>{{ recette.description }}</td>
+    </tr>
+    <tr>
+        <th>Etape</th>
+        {% for etape in recette.etapes %}
+            <td>{{ etape.etapeDescription }}</td>
+        {% endfor %}
+    </tr>
+    <tr>
+        <th>Ingredient</th>
+        <td>{{ recette.ingredient }}</td>
+    </tr>
+    <tr>
+        <th>Saveur</th>
+        {% for saveur in recette.saveur %}
+            <td>{{ saveur }}</td>
+        {% endfor %}
+    </tr>
+    <tr>
+        <th>Facons</th>
+        {% for facon in recette.facons %}
+            <td>{{ facon }}</td>
+        {% endfor %}
+    </tr>
+    <tr>
+        <th>Temps</th>
+        <td>{{ recette.temps }}</td>
+    </tr>
+    <tr>
+        <th>Niveau</th>
+        <td>{{ recette.niveau }}</td>
+    </tr>
+    <tr>
+        <th>Valide</th>
+        <td>{% if recette.valide %}Yes{% else %}No{% endif %}</td>
+    </tr>
+    <tr>
+        <th>Status</th>
+        <td>{% if recette.status %}Yes{% else %}No{% endif %}</td>
+    </tr>
+    </tbody>
+</table>
+
+<ul>
+    <li>
+        <a href="{{ path('recette_index') }}">Back to the list</a>
+    </li>
+    <li>
+        <a href="{{ path('recette_edit', { 'id': recette.id }) }}">Edit</a>
+    </li>
+    <li>
+        {{ form_start(delete_form) }}
+        <input type="submit" value="Delete">
+        {{ form_end(delete_form) }}
+    </li>
+</ul>
