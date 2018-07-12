@@ -44,7 +44,7 @@ class RecetteType extends AbstractType
                 ]
             ])
 
-            ->add('etape', CollectionType::class, [
+            ->add('etapes', CollectionType::class, [
                 'entry_type' => EtapeType::class,
                 'entry_options' => [
                     'label' => false
@@ -119,7 +119,7 @@ class RecetteType extends AbstractType
                     'difficile' => 2,
                 ],
             ])
-            ->add('tags')
+
             /*
             ->add('save', SubmitType::class, array(
                 'attr' => array('class' => 'btn btn-warning'),
