@@ -52,6 +52,3 @@ services:
         class: RecetteBundle\Services\FileManager
         autowire: false
         public: true
-        arguments:
-            $twig: '@twig'
-            $directory: %files_directory%
