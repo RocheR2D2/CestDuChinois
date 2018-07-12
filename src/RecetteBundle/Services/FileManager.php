@@ -9,30 +9,33 @@
 namespace RecetteBundle\Services;
 
 use Psr\Container\ContainerInterface;
+use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 class FileManager
 {
 
-    private $directory;
-
-    public function __construct(Twig $twig, string $directory)
-    {
-        $this->directory = $directory;
+    public function pathExsitence(Filesystem $filesystem, $uploadPath) {
+        if($filesystem->exists($uploadPath) == false) {
+            $filesystem->mkdir($uploadPath,0700);
+        }
     }
 
+    public function uploadFile(UploadedFile $uploadedFile, $uploadPath) {
 
-    public function uploadFile(UploadedFile $uploadedFile) {
-        $filename = md5(uniqid()) . '.' . $uploadedFile->guessExtension();
+        $filename =  $this->generateUniqueFileName(). '.' . $uploadedFile->guessExtension();
 
         $uploadedFile->move(
-            $this->directory,
+            $uploadPath,
             $filename
         );
 
-
         return $filename;
+    }
 
+    public function generateUniqueFileName()
+    {
+        return md5(uniqid());
 
     }
 }
