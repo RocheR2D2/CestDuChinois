@@ -5,6 +5,7 @@ namespace RecetteBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 use SecuriteBundle\Entity\User;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Recette
@@ -47,12 +48,12 @@ class Recette
     /**
      * @ORM\OneToMany(targetEntity="Etape", mappedBy="recette", cascade={"persist"})
      */
-    private $etape;
+    private $etapes;
 
     /**
-     * @var array
+     * @var string
      *
-     * @ORM\Column(name="ingredient", type="json_array",nullable=true)
+     * @ORM\Column(name="ingredient", type="string",nullable=true)
      */
     private $ingredient;
 
@@ -64,9 +65,9 @@ class Recette
     private $saveur;
 
     /**
-     * @var string
+     * @var array
      *
-     * @ORM\Column(name="facons", type="string", length=255,nullable=true)
+     * @ORM\Column(name="facons", type="json_array", length=255,nullable=true)
      */
     private $facons;
 
@@ -99,11 +100,6 @@ class Recette
     private $status = 0;
 
     /**
-     * @ORM\ManyToMany(targetEntity="Tags", cascade={"persist"})
-     */
-    private $tags = [];
-
-    /**
      * @var User
      *
      * @ORM\ManyToOne(targetEntity="SecuriteBundle\Entity\User", inversedBy="recettes")
@@ -112,7 +108,9 @@ class Recette
 
 
 
-
+    public function __construct() {
+        $this->etapes = new ArrayCollection();
+    }
 
     /**
      * Get id
@@ -196,25 +194,8 @@ class Recette
         return $this->description;
     }
 
-
     /**
-     * Set ingredient
-     *
-     * @param array $ingredient
-     *
-     * @return Recette
-     */
-    public function setIngredient($ingredient)
-    {
-        $this->ingredient = $ingredient;
-
-        return $this;
-    }
-
-    /**
-     * Get ingredient
-     *
-     * @return array
+     * @return string
      */
     public function getIngredient()
     {
@@ -222,22 +203,14 @@ class Recette
     }
 
     /**
-     * Set saveur
-     *
-     * @param array $saveur
-     *
-     * @return Recette
+     * @param string $ingredient
      */
-    public function setSaveur($saveur)
+    public function setIngredient($ingredient)
     {
-        $this->saveur = $saveur;
-
-        return $this;
+        $this->ingredient = $ingredient;
     }
 
     /**
-     * Get saveur
-     *
      * @return array
      */
     public function getSaveur()
@@ -246,27 +219,27 @@ class Recette
     }
 
     /**
-     * Set facons
-     *
-     * @param string $facons
-     *
-     * @return Recette
+     * @param array $saveur
      */
-    public function setFacons($facons)
+    public function setSaveur($saveur)
     {
-        $this->facons = $facons;
-
-        return $this;
+        $this->saveur = $saveur;
     }
 
     /**
-     * Get facons
-     *
-     * @return string
+     * @return array
      */
     public function getFacons()
     {
         return $this->facons;
+    }
+
+    /**
+     * @param array $facons
+     */
+    public function setFacons($facons)
+    {
+        $this->facons = $facons;
     }
 
     /**
@@ -390,47 +363,6 @@ class Recette
     {
         return $this->user;
     }
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->tags = new \Doctrine\Common\Collections\ArrayCollection();
-    }
-
-    /**
-     * Add tag
-     *
-     * @param \RecetteBundle\Entity\Tags $tag
-     *
-     * @return Recette
-     */
-    public function addTag(\RecetteBundle\Entity\Tags $tag)
-    {
-        $this->tags[] = $tag;
-
-        return $this;
-    }
-
-    /**
-     * Remove tag
-     *
-     * @param \RecetteBundle\Entity\Tags $tag
-     */
-    public function removeTag(\RecetteBundle\Entity\Tags $tag)
-    {
-        $this->tags->removeElement($tag);
-    }
-
-    /**
-     * Get tags
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getTags()
-    {
-        return $this->tags;
-    }
 
     /**
      * Add etape
@@ -441,7 +373,7 @@ class Recette
      */
     public function addEtape(\RecetteBundle\Entity\Etape $etape)
     {
-        $this->etape[] = $etape;
+        $this->etapes[] = $etape;
 
         return $this;
     }
@@ -453,16 +385,28 @@ class Recette
      */
     public function removeEtape(\RecetteBundle\Entity\Etape $etape)
     {
-        $this->etape->removeElement($etape);
+        $this->etapes->removeElement($etape);
     }
 
     /**
-     * Get etape
+     * Get etapes
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getEtape()
+    public function getEtapes()
     {
-        return $this->etape;
+        return $this->etapes;
+    }
+
+
+    /**
+     * Set etapes
+     *
+     * @return $this
+     */
+    public function setEtapes(ArrayCollection $etapes)
+    {
+        $this->etapes = $etapes;
+        return $this;
     }
 }

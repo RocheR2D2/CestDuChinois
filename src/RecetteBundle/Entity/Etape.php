@@ -3,6 +3,7 @@
 namespace RecetteBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Etape
@@ -34,6 +35,7 @@ class Etape
      * @ORM\Column(name="explication", type="string", length=255)
      */
     private $etapeDescription;
+
 
 
     /**
@@ -85,15 +87,12 @@ class Etape
     {
         $this->etapeDescription = $etapeDescription;
     }
-
-
     /**
-     * @ORM\ManyToOne(targetEntity="Recette", inversedBy="etape")
+     * Many Features have One Product.
+     * @ORM\ManyToOne(targetEntity="Recette", inversedBy="etapes")
      * @ORM\JoinColumn(name="recette_id", referencedColumnName="id")
      */
     private $recette;
-
-
     /**
      * Set recette
      *
