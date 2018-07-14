@@ -10,4 +10,35 @@ namespace RecetteBundle\Repository;
  */
 class RecetteRepository extends \Doctrine\ORM\EntityRepository
 {
+
+    public function getValideRecette() {
+        return $this
+            ->createQueryBuilder("r")
+            ->where("r.valide = 1")
+            ->getQuery()
+            ->getResult();
+    }
+
+
+    public function getEnAttendRecette() {
+        return $this
+            ->createQueryBuilder("r")
+            ->where("r.valide = 0")
+            ->andWhere("r.status = 0")
+            ->getQuery()
+            ->getResult();
+    }
+
+    public function getRefuseRecette() {
+        return $this
+            ->createQueryBuilder("r")
+            ->where("r.valide = 0")
+            ->andWhere("r.status = 1")
+            ->getQuery()
+            ->getResult();
+    }
+
+
+
+
 }

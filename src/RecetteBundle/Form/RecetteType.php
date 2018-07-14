@@ -7,6 +7,7 @@ use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -36,7 +37,7 @@ class RecetteType extends AbstractType
                     'name' => 'image',
                 ]
             ])
-            ->add('description', TextType::class,[
+            ->add('description', TextareaType::class,[
                 'label' => 'Description',
                 'attr'=>[
                     'name' => 'description',
@@ -101,6 +102,25 @@ class RecetteType extends AbstractType
                     'class' => 'checkbox-inline'
                 ]
             ])
+            ->add('saison', ChoiceType::class, [
+                'label' => 'Saisons',
+                'attr'=>[
+                    'name' => 'saison',
+                    'style' => $fontcolor
+                ],
+                'expanded' => true,
+                'multiple' => true,
+                'choices'  => [
+                    'printemps' => 'printemps',
+                    'été' => 'été',
+                    'automne' => 'automne',
+                    'hiver' => 'hiver',
+                ],
+                'label_attr' => [
+                    'class' => 'checkbox-inline'
+                ]
+            ])
+
             ->add('temps', TextType::class, [
                 'label' => 'Temps de Cuission',
                 'attr'=>[
@@ -112,6 +132,7 @@ class RecetteType extends AbstractType
                 'label' => 'Difficulté',
                 'attr'=>[
                     'name' => 'niveau',
+                    'class' => 'form-control'
                 ],
                 'choices'  => [
                     'facile' => 0,
@@ -119,6 +140,8 @@ class RecetteType extends AbstractType
                     'difficile' => 2,
                 ],
             ])
+
+            ->add('province')
 
             /*
             ->add('save', SubmitType::class, array(

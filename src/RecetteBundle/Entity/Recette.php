@@ -67,6 +67,13 @@ class Recette
     /**
      * @var array
      *
+     * @ORM\Column(name="saison", type="json_array",nullable=true)
+     */
+    private $saison;
+
+    /**
+     * @var array
+     *
      * @ORM\Column(name="facons", type="json_array", length=255,nullable=true)
      */
     private $facons;
@@ -106,11 +113,35 @@ class Recette
      */
     private $user;
 
+    /**
+     * @var \Datetime
+     *
+     * @ORM\Column(name="date_creation", type="datetime")
+     */
+    private $date_creation;
+
+    /**
+     * Many Recettes have One Province.
+     *
+     * @ORM\ManyToOne(targetEntity="Province")
+     * @ORM\JoinColumn(name="province_id", referencedColumnName="id")
+     */
+    private $province;
+
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="notes", type="string", nullable=true)
+     */
+    private $notes;
 
 
     public function __construct() {
         $this->etapes = new ArrayCollection();
     }
+
+
 
     /**
      * Get id
@@ -409,4 +440,79 @@ class Recette
         $this->etapes = $etapes;
         return $this;
     }
+
+    /**
+     * @return \Datetime
+     */
+    public function getDateCreation()
+    {
+        return $this->date_creation;
+    }
+
+    /**
+     * @param \Datetime $date_creation
+     */
+    public function setDateCreation($date_creation)
+    {
+        $this->date_creation = $date_creation;
+    }
+
+
+    /**
+     * Set province
+     *
+     * @param \RecetteBundle\Entity\Province $province
+     *
+     * @return Recette
+     */
+    public function setProvince(\RecetteBundle\Entity\Province $province = null)
+    {
+        $this->province = $province;
+
+        return $this;
+    }
+
+    /**
+     * Get province
+     *
+     * @return \RecetteBundle\Entity\Province
+     */
+    public function getProvince()
+    {
+        return $this->province;
+    }
+
+    /**
+     * @return array
+     */
+    public function getSaison()
+    {
+        return $this->saison;
+    }
+
+    /**
+     * @param array $saison
+     */
+    public function setSaison($saison)
+    {
+        $this->saison = $saison;
+    }
+
+    /**
+     * @return string
+     */
+    public function getNotes()
+    {
+        return $this->notes;
+    }
+
+    /**
+     * @param string $notes
+     */
+    public function setNotes($notes)
+    {
+        $this->notes = $notes;
+    }
+
+
 }
