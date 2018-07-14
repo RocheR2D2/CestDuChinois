@@ -119,18 +119,18 @@ body {
   position: relative;
   z-index: 10;
   display: inline-block;
-  height: 30px;
-  line-height: 30px;
+  height: 23px;
+  line-height: 23px;
   vertical-align: middle;
   border: none;
-  padding: 0 16px;
+  padding: 0 6px;
   white-space: nowrap;
   letter-spacing: 1px;
   text-transform: uppercase;
   text-decoration: none;
   text-align: center;
   font-weight: 400;
-  font-size: 12px;
+  font-size: 10px;
   color: #212121;
   background-image: none;
   background-color: #E0E0E0;
@@ -225,6 +225,22 @@ fieldset[disabled] .btn {
   background-color: #3eafd1;
 }
 
+/* danger */
+.btn-danger {
+  color: #ffffff;
+  background-color: #f14444;
+}
+
+.btn-danger:hover,
+.btn-danger:focus,
+.btn-danger.focus,
+.btn-danger:active,
+.btn-danger.active {
+  color: #ffffff;
+  background-color: #d13838;
+}
+
+
 /*scrollbar */
 
 ::-webkit-scrollbar-track
@@ -261,3 +277,7 @@ fieldset[disabled] .btn {
   z-index: 20000;
 
 }
+
+
+
+

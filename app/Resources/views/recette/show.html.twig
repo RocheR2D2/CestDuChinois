@@ -1,16 +1,31 @@
 {% extends 'dashboard/index.html.twig' %}
 
 {% block content %}
-    <th>Saveur</th>
-    {% for saveur in recette.saveur %}
-        <td>{{ saveur }}</td>
+
+
+
+    <th>image</th>
+    <td><img class="img-responsive img-thumbnail"  width="80" height="80" src="{{  asset('public/uploads/' ~ app.user.username ~ '/' ~ recette.titre ~ '/' ~ recette.image) }}" /></td>
+
+    <th>etape</th>
+    {% for etape in recette.etapes %}
+        <td>{{ etape.etapeImage }}</td>
+        <td>{{ etape.etapeDescription }}</td>
+
+
     {% endfor %}
+
 {% endblock %}
+
+
 {% block javascripts %}
     {{ parent() }}
-    <script type="text/javascript" src="{{ asset('assets/js/dashboard.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('assets/js/dynamique_etape.js') }}"></script>
+    <script>
+
+    </script>
 {% endblock %}
-
-
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="icon" type="image/x-icon" href="//cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" />
+{% endblock %}
 
