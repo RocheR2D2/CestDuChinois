@@ -68,7 +68,7 @@ a, a:hover, a:focus {
     transition: all 0.3s;
     min-height: 190vh;
     margin-bottom: -10px;
-
+    font-family: 'Lobster Two', cursive;
 
 }
 
@@ -185,6 +185,14 @@ a.article, a.article:hover {
     color: #fff !important;
 }
 
+
+/*
+*********************** Table ******************
+ */
+
+.table th {
+    text-align: center;
+}
 
 
 /* ---------------------------------------------------
@@ -309,7 +317,7 @@ a.article, a.article:hover {
     box-shadow: none;
     margin: 0 auto;
     padding-bottom:20px;
-    width:80%;
+    width:85%;
 }
 
 
@@ -338,7 +346,6 @@ label.required {
     border-top-right-radius: 5px;
     border-bottom-left-radius: 17px;
     border-bottom-right-radius: 17px;
-
     padding:25px;
 
 
