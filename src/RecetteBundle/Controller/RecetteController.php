@@ -29,12 +29,16 @@ class RecetteController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $recettes = $em->getRepository('RecetteBundle:Recette')->findAll();
+        $recettesvalide = $em->getRepository('RecetteBundle:Recette')->getValideRecette();
+        $recettes_enattend = $em->getRepository('RecetteBundle:Recette')->getEnAttendRecette();;
+        $recettes_refuse = $em->getRepository('RecetteBundle:Recette')->getRefuseRecette();;
+        $n = sizeof($recettesvalide) + sizeof($recettes_enattend) + sizeof($recettes_refuse);
 
-        $n = sizeof($recettes);
 
         return $this->render('recette/index.html.twig', array(
-            'recettes' => $recettes,
+            'recettes_validees' => $recettesvalide,
+            'recettes_enattends' => $recettes_enattend,
+            'recettes_refusees' => $recettes_refuse,
             'n_recettes' => $n
         ));
     }
@@ -86,28 +90,28 @@ class RecetteController extends Controller
 
             $etapes = $recette->getEtapes();
 
-
+        // Set Etape
             if(sizeof($etapes) !== 0) {
 
                 foreach($etapes as $etape) {
                     $etape_image_File = $etape->getEtapeImage();
                     $etapeImagefilename = $file_manger->uploadFile($etape_image_File, $recetteUploadPath.'etapes');
                     $etape->setEtapeImage($etapeImagefilename);
-
+                    $etape->setRecette($recette);
                 }
             }
-            $etapes2 = $recette->getEtapes();
 
             $em = $this->getDoctrine()->getManager();
 
             $recette->setUser($this->getUser());
             $recette->setImage($imagefilename);
-
+            $recette->setProvince($form['province']->getData());
+            $recette->setDateCreation(new \DateTime());
 
             $em->persist($recette);
             $em->flush();
 
-            return $this->redirectToRoute('recette_show', array('id' => $recette->getId()));
+            return $this->redirectToRoute('recette_index');
         }
 
 
