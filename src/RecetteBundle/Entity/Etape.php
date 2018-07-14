@@ -36,6 +36,12 @@ class Etape
      */
     private $etapeDescription;
 
+    /**
+     * Many Features have One Product.
+     * @ORM\ManyToOne(targetEntity="Recette", inversedBy="etapes")
+     * @ORM\JoinColumn(name="recette_id", referencedColumnName="id")
+     */
+    private $recette;
 
 
     /**
@@ -87,12 +93,7 @@ class Etape
     {
         $this->etapeDescription = $etapeDescription;
     }
-    /**
-     * Many Features have One Product.
-     * @ORM\ManyToOne(targetEntity="Recette", inversedBy="etapes")
-     * @ORM\JoinColumn(name="recette_id", referencedColumnName="id")
-     */
-    private $recette;
+
     /**
      * Set recette
      *
