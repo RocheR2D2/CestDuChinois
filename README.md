@@ -27,3 +27,14 @@ Plugins & Bundles Utilisés :
 Mode d’emploi :
 Télécharger le projet sur le dépôt git, puis checkout en branch dev
 Dans une console, tapez : php bin/console server :run
+
+
+Pour la Suite de développement, si vous êtes intéressés par ce projet, 
+Vous pouvez contribuer à développer un mondule Tags afin de gérér la relation 
+(Many to Many) entre Entity Recette & Entity Catégorie. 
+
+Le deuxième pas est de dévélopper une API (sous Symfony) pour enregistrer toutes
+les Bon restaurants chinois sur Paris.
+
+
+Merci :)
