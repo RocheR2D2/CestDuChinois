@@ -1,0 +1,42 @@
+version: "3"
+
+services:
+
+# ------> composer ------>
+    composer_12byqown2mrjmvzu8dj:
+        container_name: composer_12byqown2mrjmvzu8dj
+        image: composer:latest
+        volumes:
+            - .././:/app
+        command: ["composer", "update"]
+# <------ composer <------
+
+# ------> mariadb ------>
+    mariadb_12byqown2mrjmvzu8dk:
+        container_name: mariadb_12byqown2mrjmvzu8dk
+        image: mariadb:latest
+        restart: always
+        volumes:
+            - ../../.database/db_recette:/var/lib/mysql
+#            - ./mariadb/conf/mariadb:/etc/mysql
+        environment:
+            MYSQL_DATABASE: esgi_pa4
+            MYSQL_USER: root
+            MYSQL_PASSWORD: root
+            MYSQL_ROOT_PASSWORD: root
+# <------ mariadb <------
+
+# ------> symfony ------>
+    symfony_12byqown2mrjmvzu8dl:
+        container_name: symfony_12byqown2mrjmvzu8dl
+        build: ./symfony
+        image: skyflow/symfony
+        restart: always
+        working_dir: /symfony_app
+        ports:
+            - 89:80
+        volumes:
+            - ../:/symfony_app
+            - ./symfony/conf/apache2:/etc/apache2
+            - ./symfony/conf/php7/php.ini:/etc/php7/php.ini
+# <------ symfony <------
